@@ -87,6 +87,10 @@ img {
   max-width: 968px;
   margin-left: 1rem;
   margin-right: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; 
 }
 
 /*=============== HEADER ===============*/
@@ -278,3 +282,67 @@ img {
       display: none; /* Sembunyikan elemen di layar laptop */
   }
 }
+
+
+.video-container {
+      max-width: 100%; /* agar video tidak melebihi lebar layar */
+  }
+
+  .video-container video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+  }
+
+  .icon {
+    position: absolute;
+    z-index: 10;
+    cursor:pointer; /* Ensure the icons appear above the video */
+}
+
+.icon1 {
+  bottom: 160px; /* Adjust the distance from the top for the first icon */
+  right: 580px  ;
+    width:3%; /* Adjust the distance from the left for the first icon */
+}
+
+.icon2 {
+    bottom: 80px; /* Adjust the distance from the bottom for the second icon */
+    right: 580px;
+    width:3%; /* Adjust the distance from the right for the second icon */
+}
+
+.icon3 {
+  bottom: 80px; /* Adjust the distance from the bottom for the second icon */
+  left: 580px;
+  width:3%; /* Adjust the distance from the right for the second icon */
+}
+
+
+  @media screen and (max-width: 768px) {
+      .video-container {
+          max-width: none; /* lepaskan batasan lebar */
+      }
+
+      .icon1 {
+        bottom: 150px; /* Adjust the distance from the top for the first icon */
+        right: 20px;
+          width:10%; /* Adjust the distance from the left for the first icon */
+      }
+      
+      .icon2 {
+          bottom: 80px; /* Adjust the distance from the bottom for the second icon */
+          right: 20px;
+          width:10%; /* Adjust the distance from the right for the second icon */
+      }
+      
+      .icon3 {
+        bottom: 80px; /* Adjust the distance from the bottom for the second icon */
+        left: 20px;
+        width:10%; /* Adjust the distance from the right for the second icon */
+      }
+  }
+
+
