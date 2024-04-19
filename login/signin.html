@@ -50,11 +50,6 @@
                 </div>
 
                 <input type="submit" value="Sign In" class="sign-btn" />
-
-                <!-- <p class="text">
-                  Forgotten your password or you login datails?
-                  <a href="#">Get help</a> signing in
-                </p> -->
               </div>
             </form>
 
@@ -105,11 +100,6 @@
 
                 <input type="submit" value="Sign Up" class="sign-btn" />
 
-                <!-- <p class="text">
-                  By signing up, I agree to the
-                  <a href="#">Terms of Services</a> and
-                  <a href="#">Privacy Policy</a>
-                </p> -->
               </div>
             </form>
           </div>
@@ -142,21 +132,68 @@
     </main>
 
     <!-- Javascript file -->
+
+
+
+    <script src="app.js"></script>
+
     <script>
-      document.querySelector('.input-field').addEventListener('input', function() {
-    var email = this.value;
-    var pattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
-    if (!pattern.test(email)) {
-        this.classList.add('invalid');
-        this.parentNode.querySelector('.error-message').style.display = 'block';
-    } else {
-        this.classList.remove('invalid');
-        this.parentNode.querySelector('.error-message').style.display = 'none';
-    }
+    document.addEventListener('DOMContentLoaded', function () {
+  // Mengambil elemen-elemen yang diperlukan dari form
+    const signInForm = document.querySelector('.sign-in-form');
+    const emailInput = signInForm.querySelector('input[type="email"]');
+    const passwordInput = signInForm.querySelector('input[type="password"]');
+    const errorDiv = signInForm.querySelector('.error-message');
+
+    signInForm.addEventListener('submit', function (event) {
+    event.preventDefault(); 
+
+    const email = emailInput.value;
+    const password = passwordInput.value;
+    const provider = 'local'; 
+    const platform = 'android'; 
+
+    // Buat objek data yang akan dikirimkan
+    const formData = {
+      login_textbox: email,
+      password: password,
+      provider: provider,
+      platform: platform
+    };
+
+    // Konversi objek data menjadi JSON
+    const jsonData = JSON.stringify(formData);
+
+    // Konfigurasi permintaan HTTP
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'https://adminsweb.streamy-ai.com/api/login', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+      // Menangani respons dari server
+      xhr.onload = function () {
+      if (xhr.status === 200) {
+        // Sukses, lakukan tindakan yang diperlukan (misalnya, redirect ke halaman beranda)
+        window.location.href = 'index.html'; // Ganti dengan halaman yang sesuai
+      } else {
+        // Gagal, tampilkan pesan kesalahan
+        errorDiv.textContent = 'Invalid email or password. Please try again.';
+      }
+    };
+
+    // Menangani kesalahan koneksi
+      xhr.onerror = function () {
+      console.error('Error while making the request.');
+    };
+
+    // Mengirim permintaan POST dengan data JSON
+    xhr.send(jsonData);
+  });
 });
+
 
     </script>
 
-    <script src="app.js"></script>
+
+
   </body>
 </html>
