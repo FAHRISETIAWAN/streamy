@@ -54,58 +54,11 @@
                 </div>
 
                 <input type="submit" value="Sign In" class="sign-btn" />
+                <div class="error-message-below-btn"></div> 
               </div>
             </form>
 
-            <!-- <form action="index.html" autocomplete="off" class="sign-up-form">
-              <div class="logo">
-                <img src="./img/logo-mata.png" alt="easyclass" />
-                <h4 >STREAMY</h4>
-              </div>
-
-              <div class="heading">
-                <h2>Sign Up</h2>
-                <h6>Already have an account?</h6>
-                <a href="#" class="toggle">Sign in</a>
-              </div>
-
-              <div class="actual-form">
-                <div class="input-wrap">
-                  <input
-                    type="text"
-                    minlength="4"
-                    class="input-field"
-                    autocomplete="off"
-                    required
-                  />
-                  <label>Enter your name</label>
-                </div>
-
-                <div class="input-wrap">
-                  <input
-                    type="email"
-                    class="input-field"
-                    autocomplete="off"
-                    required
-                  />
-                  <label>Enter your email</label>
-                </div>
-
-                <div class="input-wrap">
-                  <input
-                    type="password"
-                    minlength="4"
-                    class="input-field"
-                    autocomplete="off"
-                    required
-                  />
-                  <label>Enter your wallet address (erc20)</label>
-                </div>
-
-                <input type="submit" value="Sign Up" class="sign-btn" />
-
-              </div>
-            </form> -->
+          
           </div>
 
           <div class="carousel" style="display: none;">
@@ -180,7 +133,9 @@
         window.location.href = 'app.html'; // Ganti dengan halaman yang sesuai
       } else {
         // Gagal, tampilkan pesan kesalahan
-        errorDiv.textContent = 'Invalid email or password';
+        errorDiv.textContent = ''; // Kosongkan pesan kesalahan di atas form
+    const errorBelowButton = signInForm.querySelector('.error-message-below-btn');
+    errorBelowButton.textContent = 'Invalid email or password';
       }
     };
 
