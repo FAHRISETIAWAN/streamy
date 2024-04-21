@@ -10,13 +10,17 @@
   <body>
     <main>
       <div class="box">
-        <div class="inner-box">
+        <video autoplay muted loop id="video-bg">
+          <source src="./img/5.2 - Render 4K.mp4" type="video/mp4">
+         
+        </video>
+        <div class="inner-box" >
           <div class="forms-wrap">
             
             <form action="" autocomplete="off" class="sign-up-form">
               <div class="logo">
-                <img src="./img/logo.png" alt="easyclass" />
-                <h4 style="color: white;">STREAMY</h4>
+                <img src="./img/logo-mata.png" alt="easyclass" />
+                <h4 >STREAMY</h4>
               </div>
 
               <div class="heading">
@@ -60,8 +64,8 @@
 
             <form action="index.html" autocomplete="off" class="sign-in-form">
               <div class="logo">
-                <img src="./img/logo.png" alt="easyclass" />
-                <h4 style="color: white;">STREAMY</h4>
+                <img src="./img/logo-mata.png" alt="easyclass" />
+                <h4 >STREAMY</h4>
               </div>
 
               <div class="heading">
@@ -114,7 +118,7 @@
             </form>
           </div>
 
-          <div class="carousel">
+          <div class="carousel" style="display: none;">
             <div class="images-wrapper">
               <img src="./img/image1.png" class="image img-1 show" alt="" />
               <img src="./img/image2.png" class="image img-2" alt="" />
@@ -143,19 +147,60 @@
 
     <!-- Javascript file -->
     <script>
-      document.querySelector('.input-field').addEventListener('input', function() {
-    var email = this.value;
-    var pattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
-    if (!pattern.test(email)) {
-        this.classList.add('invalid');
-        this.parentNode.querySelector('.error-message').style.display = 'block';
-    } else {
-        this.classList.remove('invalid');
-        this.parentNode.querySelector('.error-message').style.display = 'none';
-    }
-});
-
-    </script>
+      document.addEventListener('DOMContentLoaded', function () {
+    // Mengambil elemen-elemen yang diperlukan dari form
+      const signInForm = document.querySelector('.sign-in-form');
+      const emailInput = signInForm.querySelector('input[type="email"]');
+      const passwordInput = signInForm.querySelector('input[type="password"]');
+      const errorDiv = signInForm.querySelector('.error-message');
+  
+      signInForm.addEventListener('submit', function (event) {
+      event.preventDefault(); 
+  
+      const email = emailInput.value;
+      const password = passwordInput.value;
+      const provider = 'local'; 
+      const platform = 'android'; 
+  
+      // Buat objek data yang akan dikirimkan
+      const formData = {
+        login_textbox: email,
+        password: password,
+        provider: provider,
+        platform: platform
+      };
+  
+      // Konversi objek data menjadi JSON
+      const jsonData = JSON.stringify(formData);
+  
+      // Konfigurasi permintaan HTTP
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', 'https://adminsweb.streamy-ai.com/api/login', true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+  
+        // Menangani respons dari server
+        xhr.onload = function () {
+        if (xhr.status === 200) {
+          // Sukses, lakukan tindakan yang diperlukan (misalnya, redirect ke halaman beranda)
+          window.location.href = 'index.html'; // Ganti dengan halaman yang sesuai
+        } else {
+          // Gagal, tampilkan pesan kesalahan
+          errorDiv.textContent = 'Invalid email or password. Please try again.';
+        }
+      };
+  
+      // Menangani kesalahan koneksi
+        xhr.onerror = function () {
+        console.error('Error while making the request.');
+      };
+  
+      // Mengirim permintaan POST dengan data JSON
+      xhr.send(jsonData);
+    });
+  });
+  
+  
+      </script>
 
     <script src="app.js"></script>
   </body>
