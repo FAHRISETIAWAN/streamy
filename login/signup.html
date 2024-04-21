@@ -16,51 +16,6 @@
         </video>
         <div class="inner-box" >
           <div class="forms-wrap">
-            
-            <form action="" autocomplete="off" class="sign-up-form">
-              <div class="logo">
-                <img src="./img/logo-mata.png" alt="easyclass" />
-                <h4 >STREAMY</h4>
-              </div>
-
-              <div class="heading">
-                <h2>Sign In</h2>
-                <h6>Not registred yet?</h6>
-                <a href="#" class="toggle">Sign up</a>
-              </div>
-
-              <div class="actual-form">
-                <div class="input-wrap">
-                  <input
-                  type="email"
-                  minlength="4"
-                  class="input-field"
-                  autocomplete="off"
-                  required
-              />
-                  <label>Email</label>
-                  <div class="error-message"></div>
-                </div>
-
-                <div class="input-wrap">
-                  <input
-                    type="password"
-                    minlength="4"
-                    class="input-field"
-                    autocomplete="off"
-                    required
-                  />
-                  <label>Password</label>
-                </div>
-
-                <input type="submit" value="Sign In" class="sign-btn" />
-
-                <!-- <p class="text">
-                  Forgotten your password or you login datails?
-                  <a href="#">Get help</a> signing in
-                </p> -->
-              </div>
-            </form>
 
             <form action="index.html" autocomplete="off" class="sign-in-form">
               <div class="logo">
@@ -71,7 +26,7 @@
               <div class="heading">
                 <h2>Sign Up</h2>
                 <h6>Already have an account?</h6>
-                <a href="#" class="toggle">Sign in</a>
+                <a href="./signin.html" class="toggle">Sign in</a>
               </div>
 
               <div class="actual-form">
@@ -98,22 +53,29 @@
 
                 <div class="input-wrap">
                   <input
+                    type="number"
+                    minlength="4"
+                    class="input-field"
+                    autocomplete="off"
+                    maxlength="10"
+                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                    required
+                  />
+                  <label>Enter your Phone</label>
+                </div>
+
+                <div class="input-wrap">
+                  <input
                     type="password"
                     minlength="4"
                     class="input-field"
                     autocomplete="off"
                     required
                   />
-                  <label>Enter your wallet address (erc20)</label>
+                  <label>Password</label>
                 </div>
 
                 <input type="submit" value="Sign Up" class="sign-btn" />
-
-                <!-- <p class="text">
-                  By signing up, I agree to the
-                  <a href="#">Terms of Services</a> and
-                  <a href="#">Privacy Policy</a>
-                </p> -->
               </div>
             </form>
           </div>
@@ -146,61 +108,63 @@
     </main>
 
     <!-- Javascript file -->
+
     <script>
-      document.addEventListener('DOMContentLoaded', function () {
-    // Mengambil elemen-elemen yang diperlukan dari form
-      const signInForm = document.querySelector('.sign-in-form');
-      const emailInput = signInForm.querySelector('input[type="email"]');
-      const passwordInput = signInForm.querySelector('input[type="password"]');
-      const errorDiv = signInForm.querySelector('.error-message');
-  
-      signInForm.addEventListener('submit', function (event) {
-      event.preventDefault(); 
-  
-      const email = emailInput.value;
-      const password = passwordInput.value;
-      const provider = 'local'; 
-      const platform = 'android'; 
-  
-      // Buat objek data yang akan dikirimkan
-      const formData = {
-        login_textbox: email,
-        password: password,
-        provider: provider,
-        platform: platform
-      };
-  
-      // Konversi objek data menjadi JSON
-      const jsonData = JSON.stringify(formData);
-  
-      // Konfigurasi permintaan HTTP
-      const xhr = new XMLHttpRequest();
-      xhr.open('POST', 'https://adminsweb.streamy-ai.com/api/login', true);
-      xhr.setRequestHeader('Content-Type', 'application/json');
-  
-        // Menangani respons dari server
-        xhr.onload = function () {
-        if (xhr.status === 200) {
-          // Sukses, lakukan tindakan yang diperlukan (misalnya, redirect ke halaman beranda)
-          window.location.href = 'index.html'; // Ganti dengan halaman yang sesuai
-        } else {
-          // Gagal, tampilkan pesan kesalahan
-          errorDiv.textContent = 'Invalid email or password. Please try again.';
-        }
-      };
-  
-      // Menangani kesalahan koneksi
-        xhr.onerror = function () {
-        console.error('Error while making the request.');
-      };
-  
-      // Mengirim permintaan POST dengan data JSON
-      xhr.send(jsonData);
-    });
-  });
-  
-  
-      </script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const signUpForm = document.querySelector(".sign-in-form");
+    
+        signUpForm.addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent default form submission behavior
+    
+          // Collect form data
+          const formData = {
+            name: signUpForm.querySelector('input[type="text"]').value,
+            email: signUpForm.querySelector('input[type="email"]').value,
+            phone: signUpForm.querySelector('input[type="number"]').value,
+            password: signUpForm.querySelector('input[type="password"]').value,
+            code: "+62", // Add code parameter with value +62
+            confirm_password: signUpForm.querySelector('input[type="password"]').value, // Set confirm_password same as password
+            user_id: signUpForm.querySelector('input[type="text"]').value, // Set user_id same as name
+          };
+    
+          // Check if password and confirm_password match
+          const password = formData.password;
+          const confirmPassword = formData.confirm_password;
+          if (password !== confirmPassword) {
+            console.error("Password and Confirm Password do not match");
+            // Display error message to the user
+            return;
+          }
+    
+          // Make a POST request to the API
+          fetch("https://adminsweb.streamy-ai.com/api/register", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          })
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Network response was not ok");
+              }
+              return response.json();
+            })
+            .then((data) => {
+              // Handle successful registration response
+              console.log(data);
+              // Redirect or show success message as needed
+            })
+            .catch((error) => {
+              // Handle error
+              console.error("Error registering user:", error);
+              // Display error message to the user
+            });
+        });
+      });
+    </script>
+    
+    
 
     <script src="app.js"></script>
   </body>
