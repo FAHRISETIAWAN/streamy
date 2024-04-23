@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profil</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./profil/style.css" />
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+    <script src="./profil/script.js" defer></script>
+  </head>
+  <body>
+
+    <header class="header" id="header">
+      <nav class="nav container">
+          <a href="#" class="nav__logo">
+              <img src="./profil/assets/back.png" alt="Streamy Logo" style="width: 30%;">
+          </a>
+          
+
+          <div class="nav__menu" id="nav-menu">
+              <ul class="nav__list">
+                  <li class="nav__item">
+                      <a href="app.html" class="nav__link ">
+                          <i class='bx  nav__icon'><img src="./assets/img/5.png" alt="" class="nav__img"></i>
+                          <span class="nav__name">Home</span>
+                      </a>
+                  </li>
+              
+
+                  <li class="nav__item">
+                      <a href="#" class="nav__link">
+                          <i class='bx  nav__icon'><img src="./assets/img/1.png" alt="" class="nav__img"></i>
+                          <span class="nav__name">Search</span>
+                      </a>
+                  </li>
+
+                  
+                  <li class="nav__item">
+                      <a href="#" class="nav__link">
+                          <i class='bx  nav__icon'><img src="./assets/img/3.png" alt="" class="nav__img"></i>
+                          <span class="nav__name">Create</span>
+                      </a>
+                  </li>
+
+                  <li class="nav__item">
+                      <a href="#" class="nav__link">
+                          <i class='bx  nav__icon'><img src="./assets/img/6.png" alt="" class="nav__img"></i>
+                          <span class="nav__name">Notification</span>
+                      </a>
+                  </li>
+
+                  <li class="nav__item">
+                      <a href="../profil/index.html" class="nav__link active-link">
+                          <i class='bx  nav__icon'><img src="./assets/img/2.png" alt="" class="nav__img"></i>
+                          <span class="nav__name">Profile</span>
+                      </a>
+                  </li>
+                  
+
+              </ul>
+          </div>
+          
+      <ul class="nav__list" id="tab">
+          <li class="nav__item">
+            <a href="#" class="nav__link">
+            <i class='bx  nav__icon'><img src="./profil/assets/tambah.png" alt="" class="nav__img"></i>
+                
+              </a>
+          </li>
+
+          <li class="nav__item" style="padding-right: 10px;">
+              <a href="#" class="nav__link">
+                <i class='bx  nav__icon'><img src="./profil/assets/pen.png" alt="" class="nav__img"></i>
+              </a>
+          </li>
+
+          <li class="nav__item" style="padding-right: 10px;">
+              <a href="#" class="nav__link">
+                <i class='bx  nav__icon'><img src="./profil/assets/seting.png" alt="" class="nav__img"></i>
+              </a>
+          </li>           
+      </ul>
+
+      </nav>
+  </header>
+   
+
+  <main class="main">
+    <div class="grid-container">
+      <section class="hero col-6" >
+        <!-- <img
+          id="toggleTheme"
+          class="theme-btn"
+          src="assets/theme_light.png"
+          alt="theme icon"
+        /> -->
+        <div class="hero-pic">
+          <div class="inner-circle"></div>
+          <img
+            src="./profil/assets/mason-wilkes-TMgQMXoglsM-unsplash.jpg"
+            alt="Mason Wilkes"
+           
+          />
+        </div>
+        <!-- <div class="hero-info">
+          <h4>Mason Wilkes</h4>
+          <h2>Frontend Developer</h2>
+  
+        </div> -->
+        
+      </section>
+      <section class="experience col-6">
+        <h2 style="color: white;"><b>3</b><br />Followers</h2>
+        <h2 style="color: white;"><b>5</b><br />Following</h2>
+        <h2 style="color: white;"><b>4</b><br />Post</h2>
+      </section>
+    </div>
+    
+
+    <section class="portfolio-skills">
+      <div class="btn-bg">
+        <button class="btn-2 active-btn" id="portfolio-btn">Posts</button>
+        <button class="btn-2" id="skills-btn">Saved</button>
+        <button class="btn-2" id="like-btn">Liked</button>
+      </div>
+    </section>
+    <section class="portfolio" id="portfolio">
+      <div class="wrapper">
+        <h3 style="  text-align: center;color: white;  ">No Post Available!</h3>
+      </div> 
+    
+    </section>
+    <section class="skills" id="skills">
+      <!-- <div class="wrapper">
+        <h3 style="  text-align: center;  ">No Post Available!</h3>
+      </div>  -->
+    </section>
+    <section class="like" id="like">
+      <!-- <div class="wrapper">
+        <h3 style="  text-align: center;  ">No Post Available!</h3>
+      </div>  -->
+    </section>
+    </main>
+  </body>
+</html>
